@@ -19,10 +19,9 @@ export default function AddProduct({ AddProductInList, Popup }) {
                                 ? "Amount value is Zero"
                                 : amount <= 0
                                     ? "Product Amount is invalid value"
-                                    : "Product Amount is Blank",
+                                    : "Product Amount is Blank"
             });
         } else {
-            console.log(amount);
             AddProductInList({
                 Name: productName,
                 Price: amount,

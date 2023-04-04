@@ -1,4 +1,3 @@
-import "./App.css";
 import Navbar from "./Components/NavBar";
 import ProductList from "./Components/ProductList";
 import Footer from "./Components/Footer";
@@ -9,22 +8,22 @@ import React, { useState, useEffect } from "react";
 function App() {
   const Products = [
     {
-      Name: "Redmi",
-      Price: 5000,
+      Name: "Redmi 9 Power",
+      Price: 13499,
       Quantity: 0,
     },
     {
-      Name: "Iphone",
-      Price: 2000,
+      Name: "Iphone 14",
+      Price: 89999,
       Quantity: 0,
     },
     {
-      Name: "One Plus",
-      Price: 1000,
+      Name: "One Plus C2",
+      Price: 19999,
       Quantity: 0,
     },
   ];
-  let [Popup, setPopup] = useState(null);
+  let [Popup, setPopup] = useState(null)
 
   let [productList, setproductList] = useState(() => {
     const productList = JSON.parse(localStorage.getItem("items"));
@@ -34,8 +33,8 @@ function App() {
       return Products;
     }
   });
-  useEffect(() => {
-    //Store Our Data on LocalStorage of ProductList
+
+  useEffect(() => {    //Store Our Data on LocalStorage of ProductList
     localStorage.setItem("items", JSON.stringify(productList));
   }, [productList]);
 
@@ -55,11 +54,12 @@ function App() {
   const incrimentQuantity = (index) => {
     let newProductList = [...productList];
     let newTotalAmount = totalAmount;
-    newProductList[index].Quantity++; 
+    newProductList[index].Quantity++;
     newTotalAmount += newProductList[index].Price;
     setproductList(newProductList);
     setTotalAmount(newTotalAmount);
   };
+
   //On Click Decrement Quantity
   const decrementQuantity = (index) => {
     let newProductList = [...productList];
@@ -72,6 +72,7 @@ function App() {
     setproductList(newProductList);
   };
 
+
   //On Click Reset Quantity
   const resetQuantity = () => {
     let newProductList = [...productList];
@@ -83,32 +84,33 @@ function App() {
     setTotalAmount(0);
   };
 
+
   //On Click Remove Delete product
   let deleteProduct = (index) => {
     let newTotalAmount = totalAmount; //Get total Amount
     let newProductList = [...productList];
-    newTotalAmount -=
-      newProductList[index].Price * newProductList[index].Quantity; //Subtract from total Amount Quantity*Prise of index
-    newProductList.splice(index, 1);
+    newTotalAmount -= newProductList[index].Price * newProductList[index].Quantity //Subtract from total Amount Quantity*Prise of index
+    newProductList.splice(index, 1)
     setproductList(newProductList);
-    setTotalAmount(newTotalAmount);
-  };
+    setTotalAmount(newTotalAmount)
+  }
 
   const AddProductInList = (obj) => {
     let newProductList = [...productList];
-    newProductList.push(obj);
+    newProductList.push(obj)
     setproductList(newProductList);
-  };
+  }
   setTimeout(() => {
-    setPopup(null);
-  }, 2000);
+    setPopup(null)
+  }, 2000)
   return (
     <React.Fragment>
       <Navbar />
       <Alert Popup={Popup} />
       <main className="container my-5">
-        <AddProduct AddProductInList={AddProductInList} Popup={setPopup} />
-
+        <AddProduct
+          AddProductInList={AddProductInList}
+          Popup={setPopup} />
         <div className="my-5">
           <ProductList
             Products={productList}
